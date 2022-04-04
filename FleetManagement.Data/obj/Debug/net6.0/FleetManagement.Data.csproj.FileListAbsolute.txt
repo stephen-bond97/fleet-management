@@ -1,0 +1,12 @@
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\bin\Debug\net6.0\FleetManagement.Data.deps.json
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\bin\Debug\net6.0\FleetManagement.Data.dll
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\bin\Debug\net6.0\FleetManagement.Data.pdb
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\FleetManagement.Data.csproj.AssemblyReference.cache
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\FleetManagement.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\FleetManagement.Data.AssemblyInfoInputs.cache
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\FleetManagement.Data.AssemblyInfo.cs
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\FleetManagement.Data.csproj.CoreCompileInputs.cache
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\FleetManagement.Data.dll
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\refint\FleetManagement.Data.dll
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\FleetManagement.Data.pdb
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Data\obj\Debug\net6.0\ref\FleetManagement.Data.dll

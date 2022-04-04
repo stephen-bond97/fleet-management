@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FleetManagement.Data.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.Web.Controllers
 {
     public class HomeController : Controller
     {
+
         // GET: HomeController
         public ActionResult Index()
         {

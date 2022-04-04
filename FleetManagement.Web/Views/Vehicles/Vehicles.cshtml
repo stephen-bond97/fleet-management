@@ -1,0 +1,22 @@
+﻿@model VehiclesViewModel
+<div class="card rounded shadow">
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Registration</th>
+                <th>Make</th>
+                <th>Model</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var v in Model.Vehicles)
+            {
+                <tr>
+                    <td>@v.Registration</td>
+                    <td>@v.Make</td>
+                    <td>@v.Model</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
