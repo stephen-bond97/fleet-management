@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FleetManagement.Data\FleetManagement.Data.csproj" />
+    <ProjectReference Include="..\FleetManagement.Data\FleetManagement.Data.csproj">
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

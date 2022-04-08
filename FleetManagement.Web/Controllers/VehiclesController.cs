@@ -1,6 +1,5 @@
 ﻿using FleetManagement.Data.Services;
-using FleetManagement.Web.Models;
-using Microsoft.AspNetCore.Http;
+using FleetManagement.Web.Models.Vehicles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.Web.Controllers
@@ -14,12 +13,12 @@ namespace FleetManagement.Web.Controllers
             _vehicleService = vehicleService;
         }
 
-        // GET: VehicleController
-        public ActionResult Vehicles()
+        // GET: VehicleController/List
+        public ActionResult List()
         {
             var vehicles = _vehicleService.GetVehicles();
 
-            var vm = new VehiclesViewModel
+            var vm = new VehiclesListViewModel
             {
                 Vehicles = vehicles
             };
@@ -27,14 +26,16 @@ namespace FleetManagement.Web.Controllers
             return View(vm);
         }
 
-        // GET: VehicleController/Details/5
-        public ActionResult Details(int id)
+        // GET: VehicleController/AddVehicle
+        public ActionResult AddVehicle()
         {
-            return View();
+            return View(new AddVehicleViewModel());
         }
 
-        // GET: VehicleController/Create
-        public ActionResult Create()
+        /////////////////////////////////
+
+        // GET: VehicleController/Details/5
+        public ActionResult Details(int id)
         {
             return View();
         }
