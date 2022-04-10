@@ -1,10 +1,11 @@
-﻿using FleetManagement.Data.Services;
+﻿using FleetManagement.Data.Models;
+using FleetManagement.Data.Services;
 using FleetManagement.Web.Models.Vehicles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.Web.Controllers
 {
-    public class VehiclesController : Controller
+    public class VehiclesController : BaseController
     {
         private readonly IVehicleService _vehicleService;
 
@@ -29,7 +30,52 @@ namespace FleetManagement.Web.Controllers
         // GET: VehicleController/AddVehicle
         public ActionResult AddVehicle()
         {
-            return View(new AddVehicleViewModel());
+            return View(new Vehicle());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddVehicle(Vehicle vehicle)
+        {
+            if (ModelState.IsValid)
+            {
+                vehicle = _vehicleService.AddVehicle(vehicle);
+                Alert($"Vehicle Added Successfully", AlertType.success);
+
+                return RedirectToAction(nameof(List));
+            }
+
+           return View(vehicle);
+        }
+
+        // GET: VehicleController/Edit/5
+        public ActionResult EditVehicle(int id)
+        {
+            try
+            {
+                var vehicle = _vehicleService.GetVehicle(id);
+
+                return View(vehicle);
+            }
+            catch
+            {
+                return RedirectToAction(nameof(List));
+            }
+        }
+
+        // POST: VehicleController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditVehicle(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         /////////////////////////////////
@@ -38,43 +84,7 @@ namespace FleetManagement.Web.Controllers
         public ActionResult Details(int id)
         {
             return View();
-        }
-
-        // POST: VehicleController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: VehicleController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: VehicleController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        }        
 
         // GET: VehicleController/Delete/5
         public ActionResult Delete(int id)

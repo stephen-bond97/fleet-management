@@ -16,3 +16,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+table td i {
+    margin-right: .5rem;
+    color: #858796;
+}
+
+table td i:hover {
+    cursor: pointer;
+    color: cornflowerblue;
+}

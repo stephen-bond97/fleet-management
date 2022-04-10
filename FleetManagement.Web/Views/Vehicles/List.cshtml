@@ -1,11 +1,12 @@
 ﻿@model VehiclesListViewModel
 <div class="card rounded shadow">
-    <table class="table table-sm">
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
                 <th>Registration</th>
                 <th>Make</th>
                 <th>Model</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,10 @@
                     <td>@v.Registration</td>
                     <td>@v.Make</td>
                     <td>@v.Model</td>
+                    <td>
+                        <a asp-controller="Vehicles" asp-action="EditVehicle" asp-route-id="@v.Id"><i class="fas fa-pen"></i></a>                        
+                        <a asp-controller="Vehicles" asp-action="DeleteVehicle"><i class="fas fa-trash"></i></a>
+                    </td>
                 </tr>
             }
         </tbody>

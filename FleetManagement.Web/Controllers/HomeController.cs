@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
 
         // GET: HomeController

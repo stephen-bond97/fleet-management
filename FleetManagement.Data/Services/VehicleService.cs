@@ -17,6 +17,11 @@ namespace FleetManagement.Data.Services
             db.Initialise();
         }
 
+        public Vehicle GetVehicle(int id)
+        {
+            return db.Vehicles.First(x => x.Id == id);
+        }
+
         public IList<Vehicle> GetVehicles()
         {
             return db.Vehicles.ToList();
