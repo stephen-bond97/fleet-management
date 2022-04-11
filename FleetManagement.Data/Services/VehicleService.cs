@@ -1,5 +1,6 @@
 ﻿using FleetManagement.Data.Models;
 using FleetManagement.Data.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace FleetManagement.Data.Services
 {
@@ -19,7 +20,9 @@ namespace FleetManagement.Data.Services
 
         public Vehicle GetVehicle(int id)
         {
-            return db.Vehicles.First(x => x.Id == id);
+            return db.Vehicles
+                .Include(v => v.MOTResults)
+                .First(v => v.Id == id);
         }
 
         public IList<Vehicle> GetVehicles()
@@ -46,6 +49,76 @@ namespace FleetManagement.Data.Services
             db.SaveChanges();
 
             return newVehicle;
+        }
+
+        public Vehicle UpdateVehicle(Vehicle updated)
+        {
+            var vehicle = this.GetVehicle(updated.Id);
+            if (vehicle == null)
+            {
+                return null;
+            }
+
+            vehicle.Model = updated.Model;
+            vehicle.Make = updated.Make;
+            vehicle.Year = updated.Year;
+            vehicle.BodyType = updated.BodyType;
+            vehicle.TransmissionType = updated.TransmissionType;
+            vehicle.FuelType = updated.FuelType;
+            vehicle.CubicCentimeter = updated.CubicCentimeter;
+            vehicle.NumberOfDoors = updated.NumberOfDoors;
+            vehicle.Registration = updated.Registration;
+
+            db.SaveChanges();
+            return vehicle;
+        }
+
+        public MOTResult AddMOTResult(int vehicleId, MOTResult result)
+        {
+            var vehicle = this.GetVehicle(vehicleId);
+
+            if (vehicle == null)
+            {
+                throw new KeyNotFoundException($"Vehicle {vehicleId} not found.");
+            }
+
+            var newResult = new MOTResult
+            {
+                Date = result.Date,
+                EngineerName = result.EngineerName,
+                Mileage = result.Mileage,
+                Outcome = result.Outcome,
+                Report = result.Report
+            };
+
+            vehicle.MOTResults.Add(newResult);
+            db.SaveChanges();
+
+            return newResult;
+        }
+
+        public MOTResult GetMOTResult(int resultId)
+        {
+            return db.MOTResults
+                  .First(m => m.Id == resultId);
+        }
+
+        public MOTResult UpdateMOTResult(MOTResult updated)
+        {
+            var result = this.GetMOTResult(updated.Id);
+            if (result == null)
+            {
+                return null;
+            }
+
+            result.Date = updated.Date;
+            result.EngineerName = updated.EngineerName;
+            result.Mileage = updated.Mileage;
+            result.Outcome = updated.Outcome;
+            result.Report = updated.Report;
+
+            db.SaveChanges();
+            return result;
         }
     }
 }

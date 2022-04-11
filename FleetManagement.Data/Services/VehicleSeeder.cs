@@ -13,6 +13,15 @@ namespace FleetManagement.Data.Services
         {
             svc.Initialise();
 
+            var record = new MOTResult
+            {
+                Date = DateTime.UtcNow,
+                EngineerName = "John",
+                Mileage = 15000,
+                Outcome = VehicleTestOutcome.MinorDefect,
+                Report = "Break light failure"
+            };
+
             var vehicle1 = svc.AddVehicle(new Vehicle
             {
                 Make = "Volkswagen",
@@ -25,6 +34,8 @@ namespace FleetManagement.Data.Services
                 Registration = "H4H4 W4NG",
                 TransmissionType = TransmissionType.Manual
             });
+
+            svc.AddMOTResult(vehicle1.Id, record);
 
             var vehicle2 = svc.AddVehicle(new Vehicle
             {

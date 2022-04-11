@@ -35,6 +35,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZXNcQWRkVmVoaWNsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Vehicles/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Vehicles/EditMOTRecord.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZXNcRWRpdE1PVFJlY29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Vehicles/EditVehicle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZXNcRWRpdFZlaGljbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

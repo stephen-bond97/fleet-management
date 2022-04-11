@@ -14,6 +14,8 @@ namespace FleetManagement.Web.Controllers
             _vehicleService = vehicleService;
         }
 
+        #region Vehicle
+
         // GET: VehicleController/List
         public ActionResult List()
         {
@@ -63,27 +65,34 @@ namespace FleetManagement.Web.Controllers
             }
         }
 
-        // POST: VehicleController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditVehicle(int id, IFormCollection collection)
+        public ActionResult EditVehicle(int id, [Bind("Id, Make, Model, Registration, Year, FuelType, TransmissionType, BodyType, CubicCentimeter, NumberOfDoors")] Vehicle v)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                _vehicleService.UpdateVehicle(v);
+                Alert("Vehicle Updated Successfully", AlertType.info);
 
-        /////////////////////////////////
+                return RedirectToAction(nameof(List));
+            }
+
+            return View(v);
+        }
 
         // GET: VehicleController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            try
+            {
+                var vehicle = _vehicleService.GetVehicle(id);
+
+                return View(vehicle);
+            }
+            catch
+            {
+                return RedirectToAction(nameof(List));
+            }
         }        
 
         // GET: VehicleController/Delete/5
@@ -91,6 +100,8 @@ namespace FleetManagement.Web.Controllers
         {
             return View();
         }
+
+        ///////////////////////////////////
 
         // POST: VehicleController/Delete/5
         [HttpPost]
@@ -106,5 +117,40 @@ namespace FleetManagement.Web.Controllers
                 return View();
             }
         }
+
+        #endregion
+
+        #region MOT
+
+        public ActionResult EditMOTRecord(int id)
+        {
+            try
+            {
+                var record = _vehicleService.GetMOTResult(id);
+
+                return View(record);
+            }
+            catch
+            {
+                return RedirectToAction(nameof(List));
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditMOTRecord(int id, [Bind("Id, Date, Outcome, Mileage, Report, EngineerName")] MOTResult m)
+        {
+            if (ModelState.IsValid)
+            {
+                _vehicleService.UpdateMOTResult(m);
+                Alert("MOT Updated Successfully", AlertType.info);
+
+                return RedirectToAction(nameof(List));
+            }
+
+            return View(m);
+        }
+
+        #endregion
     }
 }

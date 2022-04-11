@@ -17,6 +17,10 @@ body {
   margin-bottom: 60px;
 }
 
+table tr {
+    cursor: pointer;
+}
+
 table td i {
     margin-right: .5rem;
     color: #858796;
