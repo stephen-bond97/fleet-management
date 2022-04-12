@@ -8,14 +8,9 @@ namespace FleetManagement.Data.Services
     {
         private readonly DataContext db;
 
-        public VehicleService()
+        public VehicleService(DataContext dataContext)
         {
-            db = new DataContext();
-        }
-
-        public void Initialise()
-        {
-            db.Initialise();
+            db = dataContext;
         }
 
         public Vehicle GetVehicle(int id)

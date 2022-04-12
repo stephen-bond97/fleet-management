@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "CdFYu6eq2yaGk7jUYsl5hZEIcTGNSaOfGad2sCXC/ANrOKSuh3j5+ISJV9tpz23UYVTUY63D4t6J+y7lJXWGhA==",
+  "dgSpecHash": "S4TuG9QO0ROPAroCH+qf0ba1gfp3Beo+Aqfqckc8ZA4cDAG02HVhmH2KxeFnREwPYKKWDkFQyxUatS+10vh8zg==",
   "success": true,
   "projectFilePath": "C:\\Git\\stephen-bond97\\fleet-management\\FleetManagement.Data\\FleetManagement.Data.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Denia\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.4\\microsoft.aspnetcore.cryptography.internal.6.0.4.nupkg.sha512",
+    "C:\\Users\\Denia\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.4\\microsoft.aspnetcore.cryptography.keyderivation.6.0.4.nupkg.sha512",
     "C:\\Users\\Denia\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.3\\microsoft.data.sqlite.core.6.0.3.nupkg.sha512",
     "C:\\Users\\Denia\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.3\\microsoft.entityframeworkcore.6.0.3.nupkg.sha512",
     "C:\\Users\\Denia\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.3\\microsoft.entityframeworkcore.abstractions.6.0.3.nupkg.sha512",

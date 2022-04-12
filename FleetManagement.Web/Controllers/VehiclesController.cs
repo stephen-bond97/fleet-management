@@ -1,6 +1,7 @@
 ﻿using FleetManagement.Data.Models;
 using FleetManagement.Data.Services;
 using FleetManagement.Web.Models.Vehicles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.Web.Controllers
@@ -37,6 +38,7 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult AddVehicle(Vehicle vehicle)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult EditVehicle(int id, Vehicle v)
         {
             if (ModelState.IsValid)
@@ -111,6 +114,7 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             _vehicleService.DeleteVehicle(id);
@@ -131,6 +135,7 @@ namespace FleetManagement.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddMOTRecord(int vehicleId, MOTRecord record)
         {
             if (ModelState.IsValid)
@@ -161,6 +166,7 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult EditMOTRecord(int id, MOTRecord m)
         {
             if (ModelState.IsValid)

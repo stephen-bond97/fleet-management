@@ -21,7 +21,5 @@ namespace FleetManagement.Data.Services
         Vehicle GetVehicle(int id);
 
         IList<Vehicle> GetVehicles();
-
-        void Initialise();
     }
 }

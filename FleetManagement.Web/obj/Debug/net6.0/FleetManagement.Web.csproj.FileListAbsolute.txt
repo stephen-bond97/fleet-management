@@ -52,3 +52,5 @@ C:\Git\stephen-bond97\fleet-management\FleetManagement.Web\bin\Debug\net6.0\runt
 C:\Git\stephen-bond97\fleet-management\FleetManagement.Web\bin\Debug\net6.0\FleetManagement.Data.dll
 C:\Git\stephen-bond97\fleet-management\FleetManagement.Web\bin\Debug\net6.0\FleetManagement.Data.pdb
 C:\Git\stephen-bond97\fleet-management\FleetManagement.Web\obj\Debug\net6.0\FleetManagement.Web.csproj.CopyComplete
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Web\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Git\stephen-bond97\fleet-management\FleetManagement.Web\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll

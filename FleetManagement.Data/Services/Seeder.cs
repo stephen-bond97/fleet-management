@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace FleetManagement.Data.Services
 {
-    public static class VehicleSeeder
+    public static class Seeder
     {
-        public static void Seed(IVehicleService svc)
+        public static void Seed(IVehicleService vehicleService, IUserService userService)
         {
-            svc.Initialise();
+            SeedVehicles(vehicleService);
+            SeedUsers(userService);
+        }
 
+        private static void SeedVehicles(IVehicleService svc)
+        {
             var record = new MOTRecord
             {
                 Date = DateTime.UtcNow,
@@ -62,6 +66,13 @@ namespace FleetManagement.Data.Services
                 Registration = "B5A1 3AN",
                 TransmissionType = TransmissionType.Automatic
             });
+        }
+
+        private static void SeedUsers(IUserService svc)
+        {
+            var u1 = svc.Register("Guest", "guest@fm.com", "guest", Role.Guest);
+            var u2 = svc.Register("Administrator", "admin@fm.com", "admin", Role.Admin);
+            var u3 = svc.Register("Manager", "manager@fm.com", "manager", Role.Manager);
         }
     }
 }
