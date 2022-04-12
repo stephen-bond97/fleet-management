@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace FleetManagement.Data.Models
 {
-    public class MOTResult
+    public class MOTRecord
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.UtcNow;
 
         public VehicleTestOutcome Outcome { get; set; }
 
@@ -24,6 +24,7 @@ namespace FleetManagement.Data.Models
         public string Report { get; set; }
 
         [Required]
+        [Display(Name = "Engineer Name")]
         public string EngineerName { get; set; }
     }
 }

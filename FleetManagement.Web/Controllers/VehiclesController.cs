@@ -16,7 +16,7 @@ namespace FleetManagement.Web.Controllers
 
         #region Vehicle
 
-        // GET: VehicleController/List
+        [HttpGet]
         public ActionResult List()
         {
             var vehicles = _vehicleService.GetVehicles();
@@ -29,7 +29,7 @@ namespace FleetManagement.Web.Controllers
             return View(vm);
         }
 
-        // GET: VehicleController/AddVehicle
+        [HttpGet]
         public ActionResult AddVehicle()
         {
             return View(new Vehicle());
@@ -47,10 +47,10 @@ namespace FleetManagement.Web.Controllers
                 return RedirectToAction(nameof(List));
             }
 
-           return View(vehicle);
+            return View(vehicle);
         }
 
-        // GET: VehicleController/Edit/5
+        [HttpGet]
         public ActionResult EditVehicle(int id)
         {
             try
@@ -67,7 +67,7 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditVehicle(int id, [Bind("Id, Make, Model, Registration, Year, FuelType, TransmissionType, BodyType, CubicCentimeter, NumberOfDoors")] Vehicle v)
+        public ActionResult EditVehicle(int id, Vehicle v)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace FleetManagement.Web.Controllers
             return View(v);
         }
 
-        // GET: VehicleController/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             try
@@ -93,11 +93,9 @@ namespace FleetManagement.Web.Controllers
             {
                 return RedirectToAction(nameof(List));
             }
-        }        
+        }
 
-        ///////////////////////////////////
-
-        // POST: VehicleController/Delete/5
+        [HttpGet]
         public ActionResult DeleteVehicle(int id)
         {
             var v = _vehicleService.GetVehicle(id);
@@ -116,21 +114,42 @@ namespace FleetManagement.Web.Controllers
         public ActionResult DeleteConfirm(int id)
         {
             _vehicleService.DeleteVehicle(id);
-            
+
             Alert($"Vehicle Deleted Successfully", AlertType.info);
 
-            return RedirectToAction(nameof(List));            
+            return RedirectToAction(nameof(List));
         }
 
         #endregion
 
         #region MOT
 
+        [HttpGet]
+        public ActionResult AddMOTRecord()
+        {
+            return View(new MOTRecord());
+        }
+
+        [HttpPost]
+        public ActionResult AddMOTRecord(int vehicleId, MOTRecord record)
+        {
+            if (ModelState.IsValid)
+            {
+                record = _vehicleService.AddMOTRecord(vehicleId, record);
+                Alert($"MOT Record Added Successfully", AlertType.success);
+
+                return RedirectToAction(nameof(Details), vehicleId);
+            }
+
+            return View(record);
+        }
+
+        [HttpGet]
         public ActionResult EditMOTRecord(int id)
         {
             try
             {
-                var record = _vehicleService.GetMOTResult(id);
+                var record = _vehicleService.GetMOTRecord(id);
 
                 return View(record);
             }
@@ -142,17 +161,40 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMOTRecord(int id, [Bind("Id, Date, Outcome, Mileage, Report, EngineerName")] MOTResult m)
+        public ActionResult EditMOTRecord(int id, MOTRecord m)
         {
             if (ModelState.IsValid)
             {
-                _vehicleService.UpdateMOTResult(m);
+                _vehicleService.UpdateMOTRecord(m);
                 Alert("MOT Updated Successfully", AlertType.info);
 
                 return RedirectToAction(nameof(List));
             }
 
             return View(m);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteRecord(int id)
+        {
+            var r = _vehicleService.GetMOTRecord(id);
+
+            if (r == null)
+            {
+                Alert($"MOT Record {id} not found", AlertType.warning);
+                return RedirectToAction(nameof(List));
+            }
+            return View(r);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteMOTConfirm(int id)
+        {
+            _vehicleService.DeleteResult(id);
+
+            Alert($"Record Deleted Successfully", AlertType.info);
+
+            return RedirectToAction(nameof(List));
         }
 
         #endregion

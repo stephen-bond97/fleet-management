@@ -21,7 +21,7 @@ namespace FleetManagement.Data.Services
         public Vehicle GetVehicle(int id)
         {
             return db.Vehicles
-                .Include(v => v.MOTResults)
+                .Include(v => v.MOTRecords)
                 .First(v => v.Id == id);
         }
 
@@ -85,7 +85,7 @@ namespace FleetManagement.Data.Services
             return vehicle;
         }
 
-        public MOTResult AddMOTResult(int vehicleId, MOTResult result)
+        public MOTRecord AddMOTRecord(int vehicleId, MOTRecord result)
         {
             var vehicle = this.GetVehicle(vehicleId);
 
@@ -94,7 +94,7 @@ namespace FleetManagement.Data.Services
                 throw new KeyNotFoundException($"Vehicle {vehicleId} not found.");
             }
 
-            var newResult = new MOTResult
+            var newResult = new MOTRecord
             {
                 Date = result.Date,
                 EngineerName = result.EngineerName,
@@ -103,21 +103,21 @@ namespace FleetManagement.Data.Services
                 Report = result.Report
             };
 
-            vehicle.MOTResults.Add(newResult);
+            vehicle.MOTRecords.Add(newResult);
             db.SaveChanges();
 
             return newResult;
         }
 
-        public MOTResult GetMOTResult(int resultId)
+        public MOTRecord GetMOTRecord(int resultId)
         {
-            return db.MOTResults
+            return db.MOTRecords
                   .First(m => m.Id == resultId);
         }
 
-        public MOTResult UpdateMOTResult(MOTResult updated)
+        public MOTRecord UpdateMOTRecord(MOTRecord updated)
         {
-            var result = this.GetMOTResult(updated.Id);
+            var result = this.GetMOTRecord(updated.Id);
             if (result == null)
             {
                 return null;
@@ -131,6 +131,18 @@ namespace FleetManagement.Data.Services
 
             db.SaveChanges();
             return result;
+        }
+
+        public bool DeleteResult(int resultId)
+        {
+            var r = GetMOTRecord(resultId);
+            if (r == null)
+            {
+                return false;
+            }
+            db.MOTRecords.Remove(r);
+            db.SaveChanges();
+            return true;
         }
     }
 }

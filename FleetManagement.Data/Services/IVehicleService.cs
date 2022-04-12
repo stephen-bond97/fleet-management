@@ -10,11 +10,13 @@ namespace FleetManagement.Data.Services
 
         Vehicle UpdateVehicle(Vehicle vehicle);
 
-        MOTResult AddMOTResult(int vehicleId, MOTResult result);
+        MOTRecord AddMOTRecord(int vehicleId, MOTRecord result);
 
-        MOTResult GetMOTResult(int vehicleId);
+        MOTRecord GetMOTRecord(int vehicleId);
 
-        MOTResult UpdateMOTResult(MOTResult result);
+        MOTRecord UpdateMOTRecord(MOTRecord result);
+
+        bool DeleteResult(int resultId);
 
         Vehicle GetVehicle(int id);
 

@@ -1,13 +1,13 @@
 ﻿@model MOTRecord
 
 <div class="card rounded shadow p-3">
-    <form asp-action="EditMOTRecord">
+    <form asp-action="AddMOTRecord">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <partial name="_MOTForm" model=@Model/>
 
         <div class="mt-3">
-            <input type="submit" value="Update" class="btn btn-primary"/>
+            <input type="submit" value="Create" class="btn btn-primary"/>
             <a class="btn btn-secondary" asp-controller="Vehicles" asp-action="List">Cancel</a>
         </div>
     </form>

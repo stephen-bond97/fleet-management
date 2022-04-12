@@ -41,6 +41,6 @@ namespace FleetManagement.Data.Models
         [Range(0, 10)]
         public int NumberOfDoors { get; set; }
 
-        public List<MOTResult> MOTResults { get; set; }
+        public List<MOTRecord> MOTRecords { get; set; }
     }
 }

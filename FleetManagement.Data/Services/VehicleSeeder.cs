@@ -13,7 +13,7 @@ namespace FleetManagement.Data.Services
         {
             svc.Initialise();
 
-            var record = new MOTResult
+            var record = new MOTRecord
             {
                 Date = DateTime.UtcNow,
                 EngineerName = "John",
@@ -35,7 +35,7 @@ namespace FleetManagement.Data.Services
                 TransmissionType = TransmissionType.Manual
             });
 
-            svc.AddMOTResult(vehicle1.Id, record);
+            svc.AddMOTRecord(vehicle1.Id, record);
 
             var vehicle2 = svc.AddVehicle(new Vehicle
             {

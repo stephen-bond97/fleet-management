@@ -36,7 +36,7 @@
 
         <div class="mt-3">
             <a class="btn btn-primary" asp-controller="Vehicles" asp-action="EditVehicle" asp-route-id="@Model.Id">Edit</a>
-            <a class="btn btn-primary" asp-controller="Vehicles" asp-action="DeleteVehicle" asp-route-id="@Model.Id">Delete</a>
+            <a class="btn btn-danger" asp-controller="Vehicles" asp-action="DeleteVehicle" asp-route-id="@Model.Id">Delete</a>
         </div>
     </div>
 </div>
@@ -58,7 +58,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var r in Model.MOTResults)
+                @foreach(var r in Model.MOTRecords)
                 {
                     <tr>
                         <td>@r.Date.ToLocalTime().ToShortDateString()</td>
@@ -68,11 +68,13 @@
                         <td>@r.Report</td>
                         <td>
                             <a asp-controller="Vehicles" asp-action="EditMOTRecord" asp-route-id="@r.Id"><i class="fas fa-pen"></i></a>                        
-                            <a asp-controller="Vehicles" asp-action="DeleteMOTRecord"><i class="fas fa-trash"></i></a>
+                            <a asp-controller="Vehicles" asp-action="DeleteRecord" asp-route-id="@r.Id"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+
+        <a class="btn btn-primary" asp-controller="Vehicles" asp-action="AddMOTRecord">Add MOT Record</a>
     </div>
 </div>
