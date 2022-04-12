@@ -95,27 +95,31 @@ namespace FleetManagement.Web.Controllers
             }
         }        
 
-        // GET: VehicleController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         ///////////////////////////////////
 
         // POST: VehicleController/Delete/5
+        public ActionResult DeleteVehicle(int id)
+        {
+            var v = _vehicleService.GetVehicle(id);
+
+            if (v == null)
+            {
+                Alert($"Vehicle {id} not found", AlertType.warning);
+                return RedirectToAction(nameof(List));
+            }
+
+            return View(v);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirm(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _vehicleService.DeleteVehicle(id);
+            
+            Alert($"Vehicle Deleted Successfully", AlertType.info);
+
+            return RedirectToAction(nameof(List));            
         }
 
         #endregion

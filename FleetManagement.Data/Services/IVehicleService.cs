@@ -6,6 +6,8 @@ namespace FleetManagement.Data.Services
     {
         Vehicle AddVehicle(Vehicle vehicle);
 
+        bool DeleteVehicle(int id);
+
         Vehicle UpdateVehicle(Vehicle vehicle);
 
         MOTResult AddMOTResult(int vehicleId, MOTResult result);

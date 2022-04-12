@@ -51,6 +51,18 @@ namespace FleetManagement.Data.Services
             return newVehicle;
         }
 
+        public bool DeleteVehicle(int id)
+        {
+            var v = GetVehicle(id);
+            if (v == null)
+            {
+                return false;
+            }
+            db.Vehicles.Remove(v);
+            db.SaveChanges();
+            return true;
+        }
+
         public Vehicle UpdateVehicle(Vehicle updated)
         {
             var vehicle = this.GetVehicle(updated.Id);
