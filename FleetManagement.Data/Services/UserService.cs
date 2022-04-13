@@ -1,6 +1,7 @@
 ﻿using FleetManagement.Data.Models;
 using FleetManagement.Data.Repository;
 using FleetManagement.Data.Security;
+using Microsoft.EntityFrameworkCore;
 
 namespace FleetManagement.Data.Services
 {
@@ -11,6 +12,45 @@ namespace FleetManagement.Data.Services
         public UserService(DataContext dataContext)
         {
             db = dataContext;
+        }
+
+        public User GetUser(int id)
+        {
+            return db.Users
+                .First(u => u.Id == id);
+        }
+
+        public IList<User> GetUsers()
+        {
+            return db.Users.ToList();
+        }
+
+        public User UpdateUser(User updated)
+        {
+            var user = this.GetUser(updated.Id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.Name = updated.Name;
+            user.Email = updated.Email; 
+            user.Role = updated.Role;
+
+            db.SaveChanges();
+            return user;
+        }
+
+        public bool DeleteUser(int id)
+        {
+            var u = GetUser(id);
+            if (u == null)
+            {
+                return false;
+            }
+            db.Users.Remove(u);
+            db.SaveChanges();
+            return true;
         }
 
         public User Authenticate(string email, string password)

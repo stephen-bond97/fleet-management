@@ -41,6 +41,22 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item" >
+                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+                    aria-expanded="true" aria-controls="collapseUsers">
+                           <i class="fas fa-fw fa-user"></i>
+                           <span>Users</span>
+                       </a>
+                       <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" asp-controller="Users" asp-action="UserList">User List</a>
+                                <a class="collapse-item" asp-controller="Users" asp-action="AddUser">Add User</a>
+                            </div>
+                       </div>
+                    }
+            </li>
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
 

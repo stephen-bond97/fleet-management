@@ -1,0 +1,22 @@
+﻿@model UsersViewModel
+<div class="card rounded shadow">
+    <table class="table table-hover table-bordered">
+        <thead class="thead">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var v in Model.Users)
+            {
+                <tr data-href="/users/UserDetails/@v.Id">
+                    <td>@v.Name</td>
+                    <td>@v.Email</td>
+                    <td>@v.Role</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
