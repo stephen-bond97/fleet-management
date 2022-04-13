@@ -99,6 +99,18 @@ namespace FleetManagement.Data.Services
             };
 
             vehicle.MOTRecords.Add(newResult);
+
+            var mostRecentMOTDate = newResult.Date;
+            foreach (var record in vehicle.MOTRecords)
+            {
+                if (record.Date > mostRecentMOTDate)
+                { 
+                    mostRecentMOTDate = record.Date;
+                }
+            }
+
+            // update vehicle's next mot date with this record's date + 1 year
+            vehicle.NextMOTDate = mostRecentMOTDate.AddYears(1);
             db.SaveChanges();
 
             return newResult;

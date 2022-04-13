@@ -4,7 +4,10 @@ namespace FleetManagement.Data.Models
 {
     public enum VehicleTestOutcome 
     {
+        [Display(Name = "Pass")]
         Pass,
+
+        [Display(Name = "Advisory")]
         Advisory,
 
         [Display(Name = "Minor Defect")]

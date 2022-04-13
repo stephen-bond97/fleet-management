@@ -30,3 +30,11 @@ table td i:hover {
     cursor: pointer;
     color: cornflowerblue;
 }
+
+.alert {
+    margin-top: 1rem;
+}
+
+.alert .btn-close {
+    padding: 1rem !important;
+ }

@@ -33,7 +33,8 @@ namespace FleetManagement.Data.Services
                 return null;
             }
 
-            user.Name = updated.Name;
+            user.FirstName = updated.FirstName;
+            user.LastName = updated.LastName;
             user.Email = updated.Email; 
             user.Role = updated.Role;
 
@@ -62,7 +63,7 @@ namespace FleetManagement.Data.Services
             return (user != null && Hasher.ValidateHash(user.Password, password)) ? user : null;
         }
 
-        public User Register(string name, string email, string password, Role role)
+        public User Register(string firstName, string lastName, string email, string password, Role role)
         {
             // check that the user does not already exist (unique user name)
             var exists = GetUserByEmail(email);
@@ -74,7 +75,8 @@ namespace FleetManagement.Data.Services
             // Custom Hasher used to encrypt the password before storing in database
             var user = new User
             {
-                Name = name,
+                FirstName = firstName,
+                LastName = lastName,
                 Email = email,
                 Password = Hasher.CalculateHash(password),
                 Role = role

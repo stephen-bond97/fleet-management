@@ -1,33 +1,36 @@
-﻿@model MOTRecord
+﻿@model MOTViewModel
+
+<input type="hidden" asp-for="MOTRecord.Id"/>
+<input type="hidden" asp-for="VehicleId"/>
 
 <div class="mt-3">
-    <label asp-for="Date" class="form-label"></label>
-    <input asp-for="Date" class="form-control"/>
-    <span asp-validation-for="Date" class="text-danger"></span>
+    <label asp-for="MOTRecord.Date" class="form-label"></label>
+    <input asp-for="MOTRecord.Date" class="form-control"/>
+    <span asp-validation-for="MOTRecord.Date" class="text-danger"></span>
 </div>
 
 <div class="mt-3">
-    <label asp-for="Outcome" class="form-label"></label>
-    <select asp-for="Outcome" class="form-control" 
+    <label asp-for="MOTRecord.Outcome" class="form-label"></label>
+    <select asp-for="MOTRecord.Outcome" class="form-control" 
         asp-items="Html.GetEnumSelectList<VehicleTestOutcome>()"))">
     </select>
-    <span asp-validation-for="Outcome" class="text-danger"></span>
+    <span asp-validation-for="MOTRecord.Outcome" class="text-danger"></span>
 </div>
 
 <div class="mt-3">
-    <label asp-for="Mileage" class="form-label"></label>
-    <input asp-for="Mileage" class="form-control"/>
-    <span asp-validation-for="Mileage" class="text-danger"></span>
+    <label asp-for="MOTRecord.Mileage" class="form-label"></label>
+    <input asp-for="MOTRecord.Mileage" class="form-control"/>
+    <span asp-validation-for="MOTRecord.Mileage" class="text-danger"></span>
 </div>
 
 <div class="mt-3">
-    <label asp-for="Report" class="form-label"></label>
-    <input asp-for="Report" class="form-control"/>
-    <span asp-validation-for="Report" class="text-danger"></span>
+    <label asp-for="MOTRecord.Report" class="form-label"></label>
+    <input asp-for="MOTRecord.Report" class="form-control"/>
+    <span asp-validation-for="MOTRecord.Report" class="text-danger"></span>
 </div>
 
 <div class="mt-3">
-    <label asp-for="EngineerName" class="form-label"></label>      
-    <input asp-for="EngineerName" class="form-control"/>
-    <span asp-validation-for="EngineerName" class="text-danger"></span>
+    <label asp-for="MOTRecord.EngineerName" class="form-label"></label>      
+    <input asp-for="MOTRecord.EngineerName" class="form-control"/>
+    <span asp-validation-for="MOTRecord.EngineerName" class="text-danger"></span>
 </div>

@@ -27,6 +27,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Shared/_Alert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BbGVydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Shared/_BlankLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9CbGFua0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -45,6 +49,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Users/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Users/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Git/stephen-bond97/fleet-management/FleetManagement.Web/Views/Users/UpdateUser.cshtml]

@@ -40,11 +40,11 @@ namespace FleetManagement.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult AddUser(string name, string email, string password, Role role)
+        public ActionResult AddUser(string firstName, string lastName, string email, string password, Role role)
         {
             if (ModelState.IsValid)
             {
-                var newUser = _userService.Register(name, email, password, role);
+                var newUser = _userService.Register(firstName, lastName, email, password, role);
                 Alert($"User Added Successfully", AlertType.success);
 
                 return RedirectToAction(nameof(UserList));
@@ -147,13 +147,40 @@ namespace FleetManagement.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction(nameof(Login));
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View(new UserRegisterViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Register(UserRegisterViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                var newUser = _userService.Register(user.FirstName, user.LastName, user.Email, user.Password, Role.Guest);
+                Alert($"User Registered Successfully", AlertType.success);
+
+                return RedirectToAction(nameof(Login));
+            }
+
+            return View(user);
+        }
+
         private ClaimsPrincipal BuildClaimsPrincipal(User user)
         {
             // define user claims - you can add as many as required
             var claims = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             }, CookieAuthenticationDefaults.AuthenticationScheme);
 

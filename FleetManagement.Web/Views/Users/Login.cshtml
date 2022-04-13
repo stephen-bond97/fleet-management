@@ -30,14 +30,17 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="register.html">Create an Account!</a>
+                                <a class="small" asp-controller="Users" asp-action="Register">Create an Account!</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

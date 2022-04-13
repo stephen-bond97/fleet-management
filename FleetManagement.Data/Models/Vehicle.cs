@@ -22,7 +22,7 @@ namespace FleetManagement.Data.Models
         public string Registration { get; set; }
 
         [Range(1904, 2022)]
-        public int Year { get; set; } = DateTime.Now.Year;
+        public int Year { get; set; } = DateTime.UtcNow.Year;
 
         [Display(Name = "Fuel Type")]
         public FuelType FuelType { get; set; }
@@ -42,5 +42,7 @@ namespace FleetManagement.Data.Models
         public int NumberOfDoors { get; set; }
 
         public List<MOTRecord> MOTRecords { get; set; }
+
+        public DateTime NextMOTDate { get; set; } = DateTime.UtcNow.AddYears(1);
     }
 }

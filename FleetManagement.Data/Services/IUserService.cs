@@ -10,6 +10,6 @@ namespace FleetManagement.Data.Services
         IList<User> GetUsers();
         User UpdateUser(User user);
         bool DeleteUser(int id);
-        User Register(string name, string email, string password, Role role);
+        User Register(string firstName, string lastName, string email, string password, Role role);
     }
 }

@@ -35,7 +35,7 @@ namespace FleetManagement.Data.Services
                 CubicCentimeter = 1500,
                 FuelType = FuelType.Diesel,
                 NumberOfDoors = 5,
-                Registration = "H4H4 W4NG",
+                Registration = "B4QM 6WP",
                 TransmissionType = TransmissionType.Manual
             });
 
@@ -50,7 +50,7 @@ namespace FleetManagement.Data.Services
                 CubicCentimeter = 1800,
                 FuelType = FuelType.Diesel,
                 NumberOfDoors = 4,
-                Registration = "I H4T3 DR1V1NG",
+                Registration = "9UWM P9S",
                 TransmissionType = TransmissionType.Manual
             });
 
@@ -70,9 +70,9 @@ namespace FleetManagement.Data.Services
 
         private static void SeedUsers(IUserService svc)
         {
-            var u1 = svc.Register("Guest", "guest@fm.com", "guest", Role.Guest);
-            var u2 = svc.Register("Administrator", "admin@fm.com", "admin", Role.Admin);
-            var u3 = svc.Register("Manager", "manager@fm.com", "manager", Role.Manager);
+            var u1 = svc.Register("David", "Bowie", "dbowie@fm.com", "dbowie", Role.Guest);
+            var u2 = svc.Register("Sean", "Bean", "sbean@fm.com", "sbean", Role.Admin);
+            var u3 = svc.Register("Timothy", "Awser", "tawser@fm.com", "tawser", Role.Manager);
         }
     }
 }

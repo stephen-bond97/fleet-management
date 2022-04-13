@@ -129,24 +129,30 @@ namespace FleetManagement.Web.Controllers
         #region MOT
 
         [HttpGet]
-        public ActionResult AddMOTRecord()
+        public ActionResult AddMOTRecord(int id)
         {
-            return View(new MOTRecord());
+            var vm = new MOTViewModel
+            {
+                VehicleId = id,
+                MOTRecord = new MOTRecord()
+            };
+
+            return View(vm);
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult AddMOTRecord(int vehicleId, MOTRecord record)
+        public ActionResult AddMOTRecord(MOTViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                record = _vehicleService.AddMOTRecord(vehicleId, record);
+                var newRecord = _vehicleService.AddMOTRecord(vm.VehicleId, vm.MOTRecord);
                 Alert($"MOT Record Added Successfully", AlertType.success);
 
-                return RedirectToAction(nameof(Details), vehicleId);
+                return RedirectToAction(nameof(Details), vm.VehicleId);
             }
 
-            return View(record);
+            return View(vm);
         }
 
         [HttpGet]
@@ -155,8 +161,12 @@ namespace FleetManagement.Web.Controllers
             try
             {
                 var record = _vehicleService.GetMOTRecord(id);
+                var vm = new MOTViewModel
+                {
+                    MOTRecord = record
+                };
 
-                return View(record);
+                return View(vm);
             }
             catch
             {
@@ -167,17 +177,17 @@ namespace FleetManagement.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult EditMOTRecord(int id, MOTRecord m)
+        public ActionResult EditMOTRecord(MOTViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _vehicleService.UpdateMOTRecord(m);
+                _vehicleService.UpdateMOTRecord(vm.MOTRecord);
                 Alert("MOT Updated Successfully", AlertType.info);
 
                 return RedirectToAction(nameof(List));
             }
 
-            return View(m);
+            return View(vm);
         }
 
         [HttpGet]
