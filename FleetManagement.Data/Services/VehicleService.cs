@@ -17,7 +17,7 @@ namespace FleetManagement.Data.Services
         {
             return db.Vehicles
                 .Include(v => v.MOTRecords)
-                .First(v => v.Id == id);
+                .FirstOrDefault(v => v.Id == id);
         }
 
         public IList<Vehicle> GetVehicles()
@@ -119,7 +119,7 @@ namespace FleetManagement.Data.Services
         public MOTRecord GetMOTRecord(int resultId)
         {
             return db.MOTRecords
-                  .First(m => m.Id == resultId);
+                  .FirstOrDefault(m => m.Id == resultId);
         }
 
         public MOTRecord UpdateMOTRecord(MOTRecord updated)

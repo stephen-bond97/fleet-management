@@ -17,7 +17,7 @@ namespace FleetManagement.Data.Services
         public User GetUser(int id)
         {
             return db.Users
-                .First(u => u.Id == id);
+                .FirstOrDefault(u => u.Id == id);
         }
 
         public IList<User> GetUsers()

@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetManagement.Web", "FleetManagement.Web\FleetManagement.Web.csproj", "{C0B84A4F-A9D1-4578-A1F8-BE98167A3A9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagement.Data", "FleetManagement.Data\FleetManagement.Data.csproj", "{AB3893A1-A2ED-419D-9874-76ACF5B27022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetManagement.Data", "FleetManagement.Data\FleetManagement.Data.csproj", "{AB3893A1-A2ED-419D-9874-76ACF5B27022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagement.Data.Test", "FleetManagement.Data.Test\FleetManagement.Data.Test.csproj", "{553B4BB2-CB17-40B4-BA54-5837D65CF173}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AB3893A1-A2ED-419D-9874-76ACF5B27022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB3893A1-A2ED-419D-9874-76ACF5B27022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB3893A1-A2ED-419D-9874-76ACF5B27022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{553B4BB2-CB17-40B4-BA54-5837D65CF173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553B4BB2-CB17-40B4-BA54-5837D65CF173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553B4BB2-CB17-40B4-BA54-5837D65CF173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553B4BB2-CB17-40B4-BA54-5837D65CF173}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
