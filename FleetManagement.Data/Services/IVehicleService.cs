@@ -21,5 +21,10 @@ namespace FleetManagement.Data.Services
         Vehicle GetVehicle(int id);
 
         IList<Vehicle> GetVehicles();
+
+        Dictionary<string, int> GetVehicleTypeSummary();
+
+        Dictionary<string, int> GetMOTSeveritySummary();
+        IList<Vehicle> GetVehiclesWithUpcomingTest();
     }
 }

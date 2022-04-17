@@ -1,4 +1,5 @@
 ﻿using FleetManagement.Data.Services;
+using FleetManagement.Web.Models.Home;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +7,22 @@ namespace FleetManagement.Web.Controllers
 {
     public class HomeController : BaseController
     {
+        private readonly IVehicleService _vehicleService;
+        public HomeController(IVehicleService vehicleService)
+        {
+            _vehicleService = vehicleService;
+        }
 
         // GET: HomeController
         public ActionResult Index()
         {
-            return View();
+            var vm = new HomeViewModel();
+
+            var vehicles = _vehicleService.GetVehiclesWithUpcomingTest();
+
+            vm.VehiclesDueMOT = vehicles;
+
+            return View(vm);
         }
 
         // GET: HomeController/Details/5

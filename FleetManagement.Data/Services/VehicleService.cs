@@ -151,5 +151,44 @@ namespace FleetManagement.Data.Services
             db.SaveChanges();
             return true;
         }
+
+        public Dictionary<string, int> GetVehicleTypeSummary()
+        {
+            var summary = new Dictionary<string, int>();
+
+            var bodyTypes = this.db.Vehicles
+                .GroupBy(v => v.BodyType)
+                .Select(v => new { BodyType = v.Key, Count = v.Count() });
+
+            foreach (var bodyType in bodyTypes)
+            {
+                summary.Add(bodyType.BodyType.ToString(), bodyType.Count);
+            }
+
+            return summary;
+        }
+
+        public Dictionary<string, int> GetMOTSeveritySummary()
+        {
+            var summary = new Dictionary<string, int>();
+
+            var outcomes = this.db.MOTRecords
+                .GroupBy(v => v.Outcome)
+                .Select(v => new { Outcome = v.Key, Count = v.Count() });
+
+            foreach (var outcome in outcomes)
+            {
+                summary.Add(outcome.Outcome.ToString(), outcome.Count);
+            }
+
+            return summary;
+        }
+
+        public IList<Vehicle> GetVehiclesWithUpcomingTest()
+        {
+            var vehicles = this.db.Vehicles.Where(v => v.NextMOTDate < DateTime.UtcNow.AddMonths(3));
+
+            return vehicles.ToList();
+        }
     }
 }
