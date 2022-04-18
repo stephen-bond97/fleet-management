@@ -26,7 +26,6 @@ namespace FleetManagement.Data.Tests.Models
 
             // Assert
             validationResults.Should().BeEmpty();
-            validationResults.Count().Should().Be(0);
         }
 
         [Theory]
@@ -74,7 +73,6 @@ namespace FleetManagement.Data.Tests.Models
 
             // Assert
             validationResults.Should().BeEmpty();
-            validationResults.Count().Should().Be(0);
         }
 
         [Theory]
@@ -122,7 +120,6 @@ namespace FleetManagement.Data.Tests.Models
 
             // Assert
             validationResults.Should().BeEmpty();
-            validationResults.Count().Should().Be(0);
         }
 
         [Theory]
@@ -170,7 +167,6 @@ namespace FleetManagement.Data.Tests.Models
 
             // Assert
             validationResults.Should().BeEmpty();
-            validationResults.Count().Should().Be(0);
         }
 
         [Theory]
@@ -218,7 +214,6 @@ namespace FleetManagement.Data.Tests.Models
 
             // Assert
             validationResults.Should().BeEmpty();
-            validationResults.Count().Should().Be(0);
         }
 
         [Theory]
@@ -266,7 +261,6 @@ namespace FleetManagement.Data.Tests.Models
 
             // Assert
             validationResults.Should().BeEmpty();
-            validationResults.Count().Should().Be(0);
         }
 
         [Theory]

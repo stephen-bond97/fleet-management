@@ -18,6 +18,7 @@ namespace FleetManagement.Data.Models
         public VehicleTestOutcome Outcome { get; set; }
 
         [Required]
+        [Range(1, Int32.MaxValue)]
         public int Mileage { get; set; }
 
         [Required]

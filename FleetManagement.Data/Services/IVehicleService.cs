@@ -4,6 +4,10 @@ namespace FleetManagement.Data.Services
 {
     public interface IVehicleService
     {
+        Vehicle GetVehicle(int id);
+
+        IList<Vehicle> GetVehicles();
+
         Vehicle AddVehicle(Vehicle vehicle);
 
         bool DeleteVehicle(int id);
@@ -17,10 +21,6 @@ namespace FleetManagement.Data.Services
         MOTRecord UpdateMOTRecord(MOTRecord result);
 
         bool DeleteResult(int resultId);
-
-        Vehicle GetVehicle(int id);
-
-        IList<Vehicle> GetVehicles();
 
         Dictionary<string, int> GetVehicleTypeSummary();
 

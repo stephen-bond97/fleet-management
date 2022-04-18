@@ -15,8 +15,8 @@ namespace FleetManagement.Data.Models
         [Required]
         public string LastName { get; set; }
 
-        [Required]
         [EmailAddress]
+        [Required]
         public string Email { get; set; }
 
         [Required]
