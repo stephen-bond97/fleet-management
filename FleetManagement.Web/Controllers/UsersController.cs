@@ -40,11 +40,11 @@ namespace FleetManagement.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult AddUser(string firstName, string lastName, string email, string password, Role role)
+        public ActionResult AddUser(User user)
         {
             if (ModelState.IsValid)
             {
-                var newUser = _userService.Register(firstName, lastName, email, password, role);
+                var newUser = _userService.Register(user.FirstName, user.LastName, user.Email, user.Password, user.Role);
                 Alert($"User Added Successfully", AlertType.success);
 
                 return RedirectToAction(nameof(UserList));

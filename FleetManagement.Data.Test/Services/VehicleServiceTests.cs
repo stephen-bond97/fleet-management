@@ -112,7 +112,7 @@ namespace FleetManagement.Data.Test.Services
         }
 
         [Fact]
-        public void UpdateVehicle_Should_Delete_Vehicle()
+        public void UpdateVehicle_Should_Update_Vehicle()
         {
             // Arrange
             var vehicle = svc.AddVehicle(new Vehicle

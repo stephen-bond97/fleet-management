@@ -25,6 +25,28 @@ namespace FleetManagement.Data.Services
             return db.Vehicles.ToList();
         }
 
+        public IList<Vehicle> GetVehicles(string registration, string make, string model)
+        {
+            var vehicles = from v in db.Vehicles select v;
+
+            if (registration != null)
+            {
+                vehicles = vehicles.Where(v => v.Registration.ToLower() == registration);
+            }
+
+            if (make != null)
+            {
+                vehicles = vehicles.Where(v => v.Make.ToLower() == make);
+            }
+
+            if (model != null)
+            {
+                vehicles = vehicles.Where(v => v.Model.ToLower() == model);
+            }
+
+            return vehicles.ToList();
+        }
+
         public Vehicle AddVehicle(Vehicle vehicle)
         {
             var newVehicle = new Vehicle
@@ -37,7 +59,8 @@ namespace FleetManagement.Data.Services
                 FuelType = vehicle.FuelType,
                 CubicCentimeter = vehicle.CubicCentimeter,
                 NumberOfDoors = vehicle.NumberOfDoors,
-                Registration = vehicle.Registration
+                Registration = vehicle.Registration,
+                Picture = vehicle.Picture
             };
 
             db.Vehicles.Add(newVehicle);
@@ -75,6 +98,7 @@ namespace FleetManagement.Data.Services
             vehicle.CubicCentimeter = updated.CubicCentimeter;
             vehicle.NumberOfDoors = updated.NumberOfDoors;
             vehicle.Registration = updated.Registration;
+            vehicle.Picture = updated.Picture;
 
             db.SaveChanges();
             return vehicle;

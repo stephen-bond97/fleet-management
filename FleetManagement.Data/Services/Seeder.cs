@@ -22,13 +22,14 @@ namespace FleetManagement.Data.Services
             {
                 Make = "Volkswagen",
                 Model = "Polo",
-                Year = 1958,
+                Year = 1998,
                 BodyType = BodyType.Hatchback,
                 CubicCentimeter = 1500,
                 FuelType = FuelType.Diesel,
                 NumberOfDoors = 5,
                 Registration = "B4QM 6WP",
-                TransmissionType = TransmissionType.Manual
+                TransmissionType = TransmissionType.Manual,
+                Picture = "VW_Polo.jpg"
             });
 
             var vehicle2 = svc.AddVehicle(new Vehicle
@@ -41,7 +42,8 @@ namespace FleetManagement.Data.Services
                 FuelType = FuelType.Diesel,
                 NumberOfDoors = 4,
                 Registration = "9UWM P9S",
-                TransmissionType = TransmissionType.Manual
+                TransmissionType = TransmissionType.Manual,
+                Picture = "mercedes_s-class.jpg"
             });
 
             var vehicle3 = svc.AddVehicle(new Vehicle
@@ -54,7 +56,8 @@ namespace FleetManagement.Data.Services
                 FuelType = FuelType.Petrol,
                 NumberOfDoors = 4,
                 Registration = "B5A1 3AN",
-                TransmissionType = TransmissionType.Automatic
+                TransmissionType = TransmissionType.Automatic,
+                Picture = "2012-audi.jpg"
             });
 
             var vehicle4 = svc.AddVehicle(new Vehicle
@@ -67,7 +70,8 @@ namespace FleetManagement.Data.Services
                 FuelType = FuelType.Petrol,
                 NumberOfDoors = 5,
                 Registration = "KDW8 6AM",
-                TransmissionType = TransmissionType.Automatic
+                TransmissionType = TransmissionType.Automatic,
+                Picture = "defender.jpg"
             });
 
             var vehicle5 = svc.AddVehicle(new Vehicle
@@ -80,7 +84,8 @@ namespace FleetManagement.Data.Services
                 FuelType = FuelType.Petrol,
                 NumberOfDoors = 3,
                 Registration = "OW1M 9DW",
-                TransmissionType = TransmissionType.Automatic
+                TransmissionType = TransmissionType.Automatic,
+                Picture = "vitara.jpg"
             });
 
             var vehicle6 = svc.AddVehicle(new Vehicle
@@ -93,7 +98,8 @@ namespace FleetManagement.Data.Services
                 FuelType = FuelType.Petrol,
                 NumberOfDoors = 5,
                 Registration = "GXU 2300",
-                TransmissionType = TransmissionType.Manual
+                TransmissionType = TransmissionType.Manual,
+                Picture = "astra.jpg"
             });
 
             var vehicle7 = svc.AddVehicle(new Vehicle
@@ -106,7 +112,8 @@ namespace FleetManagement.Data.Services
                 FuelType = FuelType.Petrol,
                 NumberOfDoors = 3,
                 Registration = "D0G UEM",
-                TransmissionType = TransmissionType.Manual
+                TransmissionType = TransmissionType.Manual,
+                Picture = "saxo.jpg"
             });
         }
 

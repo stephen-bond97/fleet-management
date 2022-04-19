@@ -2,6 +2,7 @@
 using FleetManagement.Data.Services;
 using FleetManagement.Web.Models.Vehicles;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.Web.Controllers
@@ -9,10 +10,12 @@ namespace FleetManagement.Web.Controllers
     public class VehiclesController : BaseController
     {
         private readonly IVehicleService _vehicleService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public VehiclesController(IVehicleService vehicleService)
+        public VehiclesController(IVehicleService vehicleService, IWebHostEnvironment webHostEnvironment)
         {
             _vehicleService = vehicleService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         #region Vehicle
@@ -30,36 +33,83 @@ namespace FleetManagement.Web.Controllers
             return View(vm);
         }
 
+        [HttpPost]
+        public ActionResult List(VehiclesListViewModel vm)
+        {
+            var vehicles = _vehicleService.GetVehicles(registration: vm.Registration, make: vm.Make, model: vm.Model);
+
+            vm.Vehicles = vehicles;
+
+            return View(vm);
+        }
+
         [HttpGet]
+        [Authorize]
         public ActionResult AddVehicle()
         {
-            return View(new Vehicle());
+            return View(new VehicleViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult AddVehicle(Vehicle vehicle)
+        public ActionResult AddVehicle(VehicleViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                vehicle = _vehicleService.AddVehicle(vehicle);
+                if (vm.UploadedImage == null)
+                {
+                    ModelState.AddModelError("UploadedImage", "Please select an image");
+                    return View(vm);
+                }
+                
+                string uniqueFileName = UploadFile(vm);
+
+                var vehicle = new Vehicle
+                {
+                    Make = vm.Make,
+                    Model = vm.Model,
+                    Registration = vm.Registration,
+                    Year = vm.Year,
+                    FuelType = vm.FuelType,
+                    TransmissionType = vm.TransmissionType,
+                    BodyType = vm.BodyType,
+                    CubicCentimeter = vm.CubicCentimeter,
+                    NumberOfDoors = vm.NumberOfDoors,
+                    Picture = uniqueFileName
+                };
+                
+                _vehicleService.AddVehicle(vehicle);
                 Alert($"Vehicle Added Successfully", AlertType.success);
 
                 return RedirectToAction(nameof(List));
             }
 
-            return View(vehicle);
+            return View(vm);
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult EditVehicle(int id)
         {
             try
             {
                 var vehicle = _vehicleService.GetVehicle(id);
 
-                return View(vehicle);
+                var vm = new VehicleViewModel
+                {
+                    Make = vehicle.Make,
+                    Registration = vehicle.Registration,
+                    Model = vehicle.Model,
+                    Year = vehicle.Year,
+                    FuelType = vehicle.FuelType,
+                    TransmissionType = vehicle.TransmissionType,
+                    BodyType = vehicle.BodyType,
+                    CubicCentimeter = vehicle.CubicCentimeter,
+                    NumberOfDoors = vehicle.NumberOfDoors,
+                };
+
+                return View(vm);
             }
             catch
             {
@@ -70,17 +120,40 @@ namespace FleetManagement.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult EditVehicle(int id, Vehicle v)
+        public ActionResult EditVehicle(int id, VehicleViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _vehicleService.UpdateVehicle(v);
+                var existingVehicle = _vehicleService.GetVehicle(id);
+                var imagePath = existingVehicle.Picture;
+
+                if (vm.UploadedImage != null)
+                {
+                    imagePath = UploadFile(vm);
+                }
+
+                var vehicle = new Vehicle
+                {
+                    Id = id,
+                    Make = vm.Make,
+                    Model = vm.Model,
+                    Registration = vm.Registration,
+                    Year = vm.Year,
+                    FuelType = vm.FuelType,
+                    TransmissionType = vm.TransmissionType,
+                    BodyType = vm.BodyType,
+                    CubicCentimeter = vm.CubicCentimeter,
+                    NumberOfDoors = vm.NumberOfDoors,
+                    Picture = imagePath
+                };
+
+                _vehicleService.UpdateVehicle(vehicle);
                 Alert("Vehicle Updated Successfully", AlertType.info);
 
                 return RedirectToAction(nameof(List));
             }
 
-            return View(v);
+            return View(vm);
         }
 
         [HttpGet]
@@ -211,6 +284,29 @@ namespace FleetManagement.Web.Controllers
             Alert($"Record Deleted Successfully", AlertType.info);
 
             return RedirectToAction(nameof(List));
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private string UploadFile(VehicleViewModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.UploadedImage != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.UploadedImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.UploadedImage.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
         }
 
         #endregion

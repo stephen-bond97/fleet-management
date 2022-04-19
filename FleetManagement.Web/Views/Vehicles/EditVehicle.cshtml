@@ -1,7 +1,7 @@
-﻿@model Vehicle
+﻿@model VehicleViewModel
 
 <div class="card rounded shadow p-3">
-    <form asp-action="EditVehicle">
+    <form asp-action="EditVehicle" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <partial name="_VehicleForm" model=@Model/>

@@ -29,17 +29,21 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-car-side"></i>
-                    <span>Vehicles</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" asp-controller="Vehicles" asp-action="List">List</a>
-                        <a class="collapse-item" asp-controller="Vehicles" asp-action="AddVehicle">Add Vehicle</a>
+                        <i class="fas fa-fw fa-car-side"></i>
+                        <span>Vehicles</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" asp-controller="Vehicles" asp-action="List">List</a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <a class="collapse-item" asp-controller="Vehicles" asp-action="AddVehicle">Add Vehicle</a>
+                        }
+                        </div>
                     </div>
-                </div>
+                
             </li>
             <li class="nav-item" >
                 @if (User.IsInRole("Admin") || User.IsInRole("Manager"))

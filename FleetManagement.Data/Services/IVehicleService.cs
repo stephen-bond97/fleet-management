@@ -26,5 +26,7 @@ namespace FleetManagement.Data.Services
 
         Dictionary<string, int> GetMOTSeveritySummary();
         IList<Vehicle> GetVehiclesWithUpcomingTest();
+
+        IList<Vehicle> GetVehicles(string registration, string make, string model);
     }
 }

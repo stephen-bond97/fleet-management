@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FleetManagement.Data.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FleetManagement.Data.Models
+namespace FleetManagement.Web.Models.Vehicles
 {
-    public class Vehicle
+    public class VehicleViewModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Make { get; set; }
 
@@ -37,14 +30,10 @@ namespace FleetManagement.Data.Models
         [Range(600, 10000)]
         public int CubicCentimeter { get; set; }
 
-        public string Picture { get; set; }
+        public IFormFile UploadedImage { get; set; }
 
         [Display(Name = "Number of Doors")]
         [Range(0, 10)]
         public int NumberOfDoors { get; set; }
-
-        public List<MOTRecord> MOTRecords { get; set; }
-
-        public DateTime NextMOTDate { get; set; } = DateTime.UtcNow.AddYears(1);
     }
 }

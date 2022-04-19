@@ -38,3 +38,7 @@ table td i:hover {
 .alert .btn-close {
     padding: 1rem !important;
  }
+
+.vehicle-details img {
+    max-height: 20rem;
+}

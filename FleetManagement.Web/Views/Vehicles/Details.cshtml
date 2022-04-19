@@ -4,37 +4,44 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Vehicle Details</h6>
     </div>
-    <div class="card-body">
+    <div class="card-body vehicle-details">
         <dl class="row">
-            <dt class="col-5">Registration</dt>
-            <dd class="col-7">@Model.Registration</dd>
+            <div class="col">
+                <div class="row">
+                    <dt class="col-5">Registration</dt>
+                    <dd class="col-7">@Model.Registration</dd>
 
-            <dt class="col-5">Make</dt>
-            <dd class="col-7">@Model.Make</dd>
+                    <dt class="col-5">Make</dt>
+                    <dd class="col-7">@Model.Make</dd>
 
-            <dt class="col-5">Model</dt>
-            <dd class="col-7">@Model.Model</dd>
+                    <dt class="col-5">Model</dt>
+                    <dd class="col-7">@Model.Model</dd>
 
-            <dt class="col-5">Year</dt>
-            <dd class="col-7">@Model.Year</dd>
+                    <dt class="col-5">Year</dt>
+                    <dd class="col-7">@Model.Year</dd>
 
-            <dt class="col-5">Fuel Type</dt>
-            <dd class="col-7">@Model.FuelType</dd>
+                    <dt class="col-5">Fuel Type</dt>
+                    <dd class="col-7">@Model.FuelType</dd>
 
-            <dt class="col-5">Body Type</dt>
-            <dd class="col-7">@Model.BodyType</dd>
+                    <dt class="col-5">Body Type</dt>
+                    <dd class="col-7">@Model.BodyType</dd>
 
-            <dt class="col-5">Transmission Type</dt>
-            <dd class="col-7">@Model.TransmissionType</dd>
+                    <dt class="col-5">Transmission Type</dt>
+                    <dd class="col-7">@Model.TransmissionType</dd>
 
-            <dt class="col-5">CC</dt>
-            <dd class="col-7">@Model.CubicCentimeter</dd>
+                    <dt class="col-5">CC</dt>
+                    <dd class="col-7">@Model.CubicCentimeter</dd>
 
-            <dt class="col-5">Number of Doors</dt>
-            <dd class="col-7">@Model.NumberOfDoors</dd>
+                    <dt class="col-5">Number of Doors</dt>
+                    <dd class="col-7">@Model.NumberOfDoors</dd>
 
-            <dt class="col-5">Next MOT Date</dt>
-            <dd class="col-7">@Model.NextMOTDate.ToLocalTime().ToShortDateString()</dd>
+                    <dt class="col-5">Next MOT Date</dt>
+                    <dd class="col-7">@Model.NextMOTDate.ToLocalTime().ToShortDateString()</dd>
+                </div>
+            </div>
+            <div class="col">
+                <img class="img-fluid" src="~/images/@Model.Picture"/>
+            </div>
         </dl>
 
         @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
