@@ -1,11 +1,11 @@
-﻿using FleetManagement.Data.Services;
+﻿using FleetManagement.Data.Models;
+using FleetManagement.Data.Services;
 using FleetManagement.Web.Models.Users;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using FleetManagement.Data.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FleetManagement.Web.Controllers
 {
@@ -32,6 +32,7 @@ namespace FleetManagement.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult AddUser()
         {
             return View(new User());
@@ -39,7 +40,7 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult AddUser(User user)
         {
             if (ModelState.IsValid)
@@ -69,6 +70,7 @@ namespace FleetManagement.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult UpdateUser(int id)
         {
             try
@@ -85,7 +87,7 @@ namespace FleetManagement.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult UpdateUser(int id, User u)
         {
             if (ModelState.IsValid)
@@ -100,6 +102,7 @@ namespace FleetManagement.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult DeleteUser(int id)
         {
             var u = _userService.GetUser(id);
@@ -113,6 +116,8 @@ namespace FleetManagement.Web.Controllers
             return View(u);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult DeleteConfirm(int id)
         {
             _userService.DeleteUser(id);
@@ -125,7 +130,7 @@ namespace FleetManagement.Web.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return View(new UserLoginViewModel());
         }
 
         [HttpPost]
@@ -133,6 +138,7 @@ namespace FleetManagement.Web.Controllers
         {
             var user = _userService.Authenticate(m.Email, m.Password);
 
+            // if no user was found with the given email and password combination, add errors to the model
             if (user == null)
             {
                 ModelState.AddModelError("Email", "Invalid Login Credentials");
@@ -144,6 +150,8 @@ namespace FleetManagement.Web.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 BuildClaimsPrincipal(user)
             );
+
+            // once user has logged in, redirect to the homepage
             return RedirectToAction("Index", "Home");
         }
 
@@ -165,6 +173,7 @@ namespace FleetManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                // all users are registered as guests initially, admins can change their role if required
                 var newUser = _userService.Register(user.FirstName, user.LastName, user.Email, user.Password, Role.Guest);
                 Alert($"User Registered Successfully", AlertType.success);
 
@@ -172,6 +181,12 @@ namespace FleetManagement.Web.Controllers
             }
 
             return View(user);
+        }
+
+        [HttpGet]
+        public IActionResult ErrorNotAuthorised()
+        {
+            return View();
         }
 
         private ClaimsPrincipal BuildClaimsPrincipal(User user)

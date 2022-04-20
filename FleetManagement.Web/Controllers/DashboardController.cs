@@ -1,8 +1,5 @@
-﻿using FleetManagement.Data.Repository;
-using FleetManagement.Data.Services;
+﻿using FleetManagement.Data.Services;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FleetManagement.Web.Controllers
 {
@@ -17,7 +14,6 @@ namespace FleetManagement.Web.Controllers
             _vehicleService = vehicleService;
         }
 
-        // GET: api/<DashboardController>
         [HttpGet("VehicleTypes")]
         public Dictionary<string, int> GetVehicleTypes()
         {

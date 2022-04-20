@@ -44,6 +44,7 @@
             </div>
         </dl>
 
+        <!-- if the user is authorised to the admin or manager roles, they can update or delete a Vehicle -->
         @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
         {
             <div class="mt-3">

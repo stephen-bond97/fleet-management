@@ -2,7 +2,6 @@
 using FleetManagement.Data.Services;
 using FleetManagement.Web.Models.Vehicles;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.Web.Controllers
@@ -57,11 +56,13 @@ namespace FleetManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                // if no image was uploaded, add an error to the model
+                // once the image is saved, this field becomes optional so the validation is done here instead of on the view model
                 if (vm.UploadedImage == null)
                 {
                     ModelState.AddModelError("UploadedImage", "Please select an image");
                     return View(vm);
-                }
+                }                
                 
                 string uniqueFileName = UploadFile(vm);
 
@@ -125,8 +126,11 @@ namespace FleetManagement.Web.Controllers
             if (ModelState.IsValid)
             {
                 var existingVehicle = _vehicleService.GetVehicle(id);
+                
+                // default the image path to the current picture
                 var imagePath = existingVehicle.Picture;
 
+                // if an image has been uploaded, we use it to overwrite the existing image path
                 if (vm.UploadedImage != null)
                 {
                     imagePath = UploadFile(vm);
@@ -290,6 +294,8 @@ namespace FleetManagement.Web.Controllers
 
         #region Private Methods
 
+        // Found solution to uploading an image to the web directory on stack overflow:
+        // https://stackoverflow.com/questions/65985338/asp-net-core-mvc-upload-picture-null-from-input
         private string UploadFile(VehicleViewModel model)
         {
             string uniqueFileName = null;
