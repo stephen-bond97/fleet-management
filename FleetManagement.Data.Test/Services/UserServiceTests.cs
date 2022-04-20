@@ -88,5 +88,67 @@ namespace FleetManagement.Data.Test.Services
             result.LastName.Should().Be("newlast");
             result.Email.Should().Be("new@email.com");
         }
+
+        [Fact]
+        public void DeleteUser_Should_Delete_User()
+        {
+            // Arrange
+            var user = svc.Register("test", "testlast", "test@test.com", "testpass", Role.Guest);
+
+            // Act
+            var result = svc.DeleteUser(user.Id);
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void DeleteUser_DoesNotExist_Should_Return_False()
+        {
+            // Arrange
+            var user = svc.Register("test", "testlast", "test@test.com", "testpass", Role.Guest);
+
+            // Act
+            var result = svc.DeleteUser(100);
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void GetUserByEmail_Should_Return_User()
+        {
+            // Arrange
+            var user = svc.Register("test", "testlast", "test@test.com", "testpass", Role.Guest);
+
+            // Act
+            var result = svc.GetUserByEmail("test@test.com");
+
+            // Assert
+            result.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void GetUserByEmail_DoesNotExist_Should_Return_Null()
+        {
+            // Act
+            var result = svc.GetUserByEmail("randomemail@null");
+
+            // Assert
+            result.Should().BeNull();
+        }
+
+        [Fact]
+        public void Authenticate_Should_Authenticate_User()
+        {
+            // Arrange
+            var user = svc.Register("test2", "testlast2", "test2@test.com", "test2pass", Role.Guest);
+
+            // Act
+            var result = svc.Authenticate("test2@test.com", "test2pass");
+
+            // Assert
+            result.Should().NotBeNull();
+        }
     }
 }
